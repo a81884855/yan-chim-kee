@@ -1,6 +1,6 @@
 {
-  "dbString": "",
-  "jwtPrivateKey": "",
+  "dbString": "mongodb://admin:123456a@ds117316.mlab.com:17316/yan-chim-kee-admin",
+  "jwtPrivateKey": "21h48xh180dh20dhhidq2412",
   "mailServer": {
     "host": "-HOST-",
     "auth": {
