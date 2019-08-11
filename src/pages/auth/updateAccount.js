@@ -105,7 +105,7 @@ class UpdateAccount extends React.Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "updateAccountPage" }}>
-        <title>My Account - React Starter Kit</title>
+        <title>My Account - Yan Chim Kee</title>
       </Helmet>
     );
   }

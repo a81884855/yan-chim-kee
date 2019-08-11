@@ -56,7 +56,7 @@ class ForgotPassword extends React.Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "accountRecoveryPage" }}>
-        <title>Account recovery - React Starter Kit</title>
+        <title>Account recovery - Yan Chim Kee</title>
       </Helmet>
     );
   }

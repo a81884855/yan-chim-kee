@@ -11,7 +11,7 @@ export class UnconnectedDashboard extends Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "dashboardPage" }}>
-        <title>Dashboard - React Starter Kit</title>
+        <title>Dashboard - Yan Chim Kee</title>
       </Helmet>
     );
   }

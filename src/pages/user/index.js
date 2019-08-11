@@ -29,7 +29,7 @@ export class UnconnectedUser extends Component {
             return (
               <div className="grid userProfilePage" data-test="userComponent">
                 <Helmet>
-                  <title>{`${data.profilePage.firstName} ${data.profilePage.lastName}\`s Profile - React Starter Kit`}</title>
+                  <title>{`${data.profilePage.firstName} ${data.profilePage.lastName}\`s Profile - Yan Chim Kee`}</title>
                 </Helmet>
                 <div className="column column_4_12">
                   <div className="profileImage">

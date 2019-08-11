@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const head = () => {
   return (
     <Helmet bodyAttributes={{ class: "cookiePolicyPage" }}>
-      <title>Cookie Policy - React Starter Kit</title>
+      <title>Cookie Policy - Yan Chim Kee</title>
     </Helmet>
   );
 }

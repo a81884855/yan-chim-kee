@@ -15,7 +15,7 @@ class EditProfile extends React.Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "editProfilePage" }}>
-        <title>Edit Profile - React Starter Kit</title>
+        <title>Edit Profile - Yan Chim Kee</title>
       </Helmet>
     );
   }

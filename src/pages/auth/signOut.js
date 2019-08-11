@@ -13,7 +13,7 @@ const handleSignout = (client, history) => {
 const head = () => {
   return (
     <Helmet bodyAttributes={{ class: "signOutPage" }}>
-      <title>LogOut - React Starter Kit</title>
+      <title>LogOut - Yan Chim Kee</title>
     </Helmet>
   );
 }

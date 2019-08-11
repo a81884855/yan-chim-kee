@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const head = () => {
   return (
     <Helmet bodyAttributes={{ class: "notFound404ErrorPage" }}>
-      <title>404 Not Found - React Starter Kit</title>
+      <title>404 Not Found - Yan Chim Kee</title>
     </Helmet>
   );
 }

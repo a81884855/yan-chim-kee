@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const head = () => {
   return (
     <Helmet bodyAttributes={{ class: "privacyPolicyPage" }}>
-      <title>Privacy Policy - React Starter Kit</title>
+      <title>Privacy Policy - Yan Chim Kee</title>
     </Helmet>
   );
 }

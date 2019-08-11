@@ -72,7 +72,7 @@ class Signup extends React.Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "signUpPage" }}>
-        <title>Join now! - React Starter Kit</title>
+        <title>Join now! - Yan Chim Kee</title>
       </Helmet>
     );
   }

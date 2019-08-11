@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const head = () => {
   return (
     <Helmet bodyAttributes={{ class: "termsPage" }}>
-      <title>Terms - React Starter Kit</title>
+      <title>Terms - Yan Chim Kee</title>
     </Helmet>
   );
 }

@@ -60,7 +60,7 @@ class Signin extends React.Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "logInPage" }}>
-        <title>LogIn - React Starter Kit</title>
+        <title>LogIn - Yan Chim Kee</title>
       </Helmet>
     );
   }

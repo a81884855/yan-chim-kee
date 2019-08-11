@@ -10,7 +10,7 @@ export class UnconnectedUsers extends Component {
   head() {
     return (
       <Helmet bodyAttributes={{ class: "usersPage" }}>
-        <title>Users - React Starter Kit</title>
+        <title>Users - Yan Chim Kee</title>
       </Helmet>
     );
   }
