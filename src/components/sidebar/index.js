@@ -52,11 +52,6 @@ export class UnconnectedSideBar extends Component {
             {this.props.session.getCurrentUser === null &&
               <ul>
                 <li>
-                  <NavLink to="/users" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-users"></i>
-                    Users</NavLink>
-                </li>
-                <li>
                   <NavLink to="/signin" onClick={() => this.mobile_nav_button()}>
                     <i className="fas fa-user"></i>
                     LogIn</NavLink>
@@ -66,40 +61,20 @@ export class UnconnectedSideBar extends Component {
                     <i className="fas fa-pen-fancy"></i>
                     Join now</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/account-recovery" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-key"></i>
-                    Account recovery</NavLink>
-                </li>
               </ul>
             }
 
             {this.props.session.getCurrentUser != null &&
               <ul>
                 <li>
-                  <NavLink to="/users" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-users"></i>
-                    Users</NavLink>
-                </li>
-                <li>
                   <NavLink to="/dashboard" onClick={() => this.mobile_nav_button()}>
                     <i className="fas fa-tachometer-alt"></i>
                     Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to={`/profile/${this.props.session.getCurrentUser.userName}`} onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-user-circle"></i>
-                    View my Profile</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/edit-profile" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-user-cog"></i>
-                    Edit Profile</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/account" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-user-circle"></i>
-                    Update Account</NavLink>
+                  <NavLink to="/slideshow" onClick={() => this.mobile_nav_button()}>
+                    <i className="fas fa-tachometer-alt"></i>
+                    SlideShow</NavLink>
                 </li>
                 <li>
                   <NavLink to="/signout" onClick={() => this.mobile_nav_button()}>
@@ -108,28 +83,6 @@ export class UnconnectedSideBar extends Component {
                 </li>
               </ul>
             }
-
-            <div className="headline">
-              Important
-            </div>
-
-            <ul>
-              <li>
-                <NavLink to="/cookie-policy" onClick={() => this.mobile_nav_button()}>
-                  <i className="fas fa-cookie-bite"></i>
-                  Cookie Policy</NavLink>
-              </li>
-              <li>
-                <NavLink to="/privacy-policy" onClick={() => this.mobile_nav_button()}>
-                  <i className="fas fa-user-secret"></i>
-                  Privacy Policy</NavLink>
-              </li>
-              <li>
-                <NavLink to="/terms" onClick={() => this.mobile_nav_button()}>
-                  <i className="fas fa-handshake"></i>
-                  ${`T&C's`}</NavLink>
-              </li>
-            </ul>
 
           </div>
 

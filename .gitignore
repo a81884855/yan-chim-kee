@@ -5,3 +5,5 @@ build
 yarn-error.log
 package-lock.json
 /coverage/
+key.js
+/config/

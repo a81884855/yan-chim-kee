@@ -11,7 +11,7 @@ class MainLayout extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container1">
         <aside className="sideBar">
           <SideBar />
         </aside>

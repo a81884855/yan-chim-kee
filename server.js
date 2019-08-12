@@ -19,11 +19,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
-import nodemailer from 'nodemailer';
-import hbs from 'nodemailer-express-handlebars';
 import { Helmet } from 'react-helmet';
 import fileUpload from 'express-fileupload';
-import randomstring from 'randomstring';
 
 import AppComponent from './src/app';
 import HTML from './src/helpers/renderer';
@@ -31,6 +28,7 @@ import HTML from './src/helpers/renderer';
 import { typeDefs } from './src/schema';
 import { resolvers } from './src/resolvers';
 import User from './src/models/User';
+import SlideShow from './src/models/Slideshow';
 
 // Connect MongoDB
 mongoose.connect(config.get('dbString'), { useNewUrlParser: true }).then(() => {
@@ -57,6 +55,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 app.use("/", express.static("build/public"));
+
+app.get('/image/:folder/:file', function (req, res) {
+
+  const file_name = req.params.file;
+  const get_file = path.resolve(`./user-uploads/${req.params.folder}/` + req.params.file);
+  const current_files = fs.readdirSync(`./user-uploads/${req.params.folder}/`);
+  const fileExists = current_files.includes(file_name);
+
+  if (fileExists) {
+    res.status(200).sendFile(get_file);
+  } else {
+    res.status(404).send('No File Found!');
+  }
+
+});
+
+app.get("/imagesList/:folder", (req, res)=>{
+  console.log(req.params.folder)
+  if(req.params.folder === "slideshow"){
+    console.log('yes')
+    SlideShow.find({})
+    .then( list => res.status(200).json(list))
+    .catch( err => console.log(err))
+  }
+})
 
 app.get('/user-uploads/:file', function (req, res) {
 
@@ -159,40 +182,6 @@ app.get(['*/:param', '*'], (req, res) => {
 
 });
 
-app.post('/password-reset', (req, response) => {
-
-  var mailer = nodemailer.createTransport({
-    host: config.get('mailServer.host'),
-    auth: {
-      user: config.get('mailServer.auth.user'),
-      pass: config.get('mailServer.auth.pass')
-    }
-  });
-
-  mailer.use('compile', hbs({
-    viewPath: 'build/public/assets/email_templates',
-    extName: '.hbs'
-  }));
-
-  mailer.sendMail({
-    from: config.get('mailServer.from'),
-    to: req.body.email,
-    subject: config.get('mailServer.subject'),
-    template: 'passwordReset',
-    context: {
-      email: req.body.email,
-      password: req.body.generatedPassword
-    }
-  }, function (err, res) {
-    if (err) {
-      // console.log(err)
-      return response.status(500).send('500 - Internal Server Error')
-    }
-    response.status(200).send('200 - The request has succeeded.')
-  });
-
-});
-
 app.use(fileUpload());
 const getFileType = (fileType) => {
   let ext;
@@ -204,42 +193,36 @@ const getFileType = (fileType) => {
   return ext;
 }
 
-app.post('/upload', function (req, res) {
-
+app.post('/image/upload/:foldName', function (req, res) {
   if (!req.files) return res.status(400).send('No files were uploaded.');
 
-  var current_files = fs.readdirSync('./user-uploads/profile-images/');
+  var current_files = fs.readdirSync(`./user-uploads/${req.params.foldName}/`);
   let profilePic = req.files.selectedFile;
-  let file_ext = getFileType(profilePic.mimetype);
-  let tempFileName = randomstring.generate(21) + file_ext;
+  let fileName = profilePic.name;
 
-  const fileExists = current_files.includes(tempFileName);
+  if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
 
-  while (fileExists) {
-    let string = randomstring.generate(21);
-    tempFileName = string + file_ext;
-
-    if (!current_files.includes(tempFileName)) {
-      break;
-    }
-
-  }
-
-  let send_filePath = './user-uploads/profile-images/' + tempFileName;
+  let send_filePath = `./user-uploads/${req.params.foldName}/` + fileName;
 
   profilePic.mv(send_filePath, function (err) {
 
     if (err) return res.status(500).send(err);
 
     const res_dataObj = {
-      "newFileName": tempFileName
+      "newFileName": fileName
     }
 
-    res.send(res_dataObj);
+    const newSlideShow = new SlideShow({
+      image: profilePic.name,
+    });
+
+    newSlideShow.save()
+    .then(res.send(res_dataObj))
+    .catch(err => console.log(err))
+
 
   });
 
 });
-
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
