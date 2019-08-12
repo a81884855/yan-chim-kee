@@ -1,6 +1,6 @@
-import { Slide } from 'react-slideshow-image';
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Image, Carousel } from 'react-bootstrap';
 
 export class Slideshow extends Component {
   constructor(){
@@ -11,33 +11,33 @@ export class Slideshow extends Component {
   }
 
   componentDidMount(){
-    axios.get(`/api/images/upload/slideshow`)
-      .then((data)=>{
-        this.setState({
-          slideImages: data.data
-        })
-      })
+    axios.get(`/api/images/imagesList/slideshow`)
+      .then(res => this.setState({
+        slideImages: res.data
+      }))
+      .then((res)=> console.log(res))
   }
 
   render() {
     const { slideImages } = this.state;
-    const properties = {
-      duration: 5000,
-      transitionDuration: 500,
-      infinite: true,
-      indicators: true,
-      scale: 0.4,
-      arrows: true,
-    }
     return (
-      <Slide {...properties}>
-        {
-          slideImages.map((each) => 
-            <a href="JavaScript:Void(0)" key={each._id}>
-              <img alt="" key={each._id} style={{ height:"100vh", width: "100%"}} src={`/images/slideshow/${each.image}`} />
-            </a>)
-        }
-      </Slide>
+      <Carousel>
+        {slideImages.map((slide)=>
+          <Carousel.Item key={slide._id}>
+            <Image 
+              src={`/api/images/slideshow/${slide.image}`}
+              alt="First slide"
+              name={slide._id}
+              style={{ width: '100%', height: '100vh' }}
+              thumbnail
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        )}
+      </Carousel>
     )
   }
 }

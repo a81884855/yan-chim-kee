@@ -37,7 +37,7 @@ export class UnconnectedUser extends Component {
                       <img src={`${webConfig.siteURL}/assets/graphics/abstract_patterns/texture.jpg`} />
                     }
                     {data.profilePage.profileImage &&
-                      <img src={`${webConfig.siteURL}/user-uploads/${data.profilePage.profileImage}`} />
+                      <img src={`${webConfig.siteURL}/images/${data.profilePage.profileImage}`} />
                     }
                   </div>
                   <div className="user">

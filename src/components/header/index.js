@@ -1,56 +1,44 @@
-import React from 'react';
-import webConfig from './../../../webConfig';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { Navbar, Nav } from 'react-bootstrap';
 
-import withSession from './../../hoc/withSession';
+export default function Head() {
+  return (
+    <div className="header">
+      <div id="language">
+        <span>繁</span>
+        <span>简</span>
+        <span>Eng</span>
+        | 
+        <span>
+          <a href="https://www.facebook.com/Yanchimkee/">
+            <img className="social" alt="facebook" src="/api/images/main/facebook.png"/></a>
+          <a href="https://www.instagram.com/yanchimkee/">
+            <img className="social" alt="instragram" src="/api/images/main/instagram.png"/></a>
+        </span>
+      </div>
 
-export class UnconnectedHeader extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-
-    return (
-      <header data-test="headerComponent">
-
-        <div className="header_links">
-          <NavLink to="/faq">FAQ</NavLink>
-        </div>
-
-        {this.props.session.getCurrentUser != null &&
-
-          <div className="your_account">
-            <NavLink to={`/profile/${this.props.session.getCurrentUser.userName}`}>
-              <div className="wrap">
-                <div className="profile_img">
-                  {!this.props.session.getCurrentUser.profileImage &&
-                    <img src={`${webConfig.siteURL}/assets/graphics/abstract_patterns/texture.jpg`} />
-                  }
-                  {this.props.session.getCurrentUser.profileImage &&
-                    <img src={`${webConfig.siteURL}/user-uploads/${this.props.session.getCurrentUser.profileImage}`} />
-                  }
-                </div>
-                <div className="caption">
-                  {this.props.session.getCurrentUser != null &&
-                    <span>
-                      {this.props.session.getCurrentUser.firstName} {this.props.session.getCurrentUser.lastName}
-                    </span>
-                  }
-                </div>
-              </div>
-            </NavLink>
-
-          </div>
-
-        }
-
-
-      </header>
-    );
-  }
+      <Navbar bg="light" expand="md">
+        <Navbar.Brand href="/">            
+          <img 
+            className="mr-sm-5 ml-sm-5"
+            src="/api/images/main/logo.png" 
+            alt="logo" 
+            style={{ width: 110, display: 'block', margin: 'auto' }}
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto" style={{fontSize: '16px'}}>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="aboutUs">About Us</Nav.Link>
+            <Nav.Link href="products">Products</Nav.Link>
+            <Nav.Link href="latestNews">Latest News</Nav.Link>
+            <Nav.Link href="salesLocation">Sales Locations</Nav.Link>
+            <Nav.Link href="upcomingEvent">Upcoming Events</Nav.Link>
+            <Nav.Link href="contactus">Contact US</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
+  )
 }
-
-
-export default withSession(UnconnectedHeader);

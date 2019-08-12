@@ -1,18 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-export const UnconnectedFooter = () => (
-  <footer data-test="footerComponent">
-
-    <div className="copyright">&copy; 2019 <a href="http://www.react-starter-kit.com" target="_blank" rel="noopener noreferrer">React-Starter-Kit.com</a></div>
-
-    <div className="social_icons">
-      <ul>
-        <li><a href="https://www.facebook.com/SimpleTut" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a></li>
-        <li><a href="https://github.com/simpletut" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a></li>
-      </ul>
+export default function Footer() {
+  return (
+    <div className="footer">
+      <div>
+        <a href="https://www.facebook.com/Yanchimkee/">
+          <img className="social" alt="facebook" src="/api/images/main/facebook.png"/></a>
+        <a href="https://www.instagram.com/yanchimkee/">
+          <img className="social" alt="instagram" src="/api/images/main/instagram.png"/></a>
+        <span id="companyName">yanchimkee</span>
+        <p style={{marginTop: 10 }}>Copyright © 2019 by Yan Chim Kee Hong Kong Limited. All rights reserved</p>
+      </div>
     </div>
-
-  </footer>
-);
-
-export default UnconnectedFooter;
+  )
+}

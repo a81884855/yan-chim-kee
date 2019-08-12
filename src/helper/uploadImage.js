@@ -13,7 +13,7 @@ class UploadImage extends Component {
     const data = new FormData();
     const { file } = this.state;
     data.append('selectedFile', file);
-    axios.post(`/image/upload/${this.props.folderName}`, data)
+    axios.post(`/api/images/upload/${this.props.folderName}`, data)
       .then(() => this.props.refresh())
       .catch((err) => {throw err})
   }

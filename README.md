@@ -151,7 +151,7 @@ For a detailed guide through the project architecture and more information on co
 │   ├── client
 │   ├── resolvers
 │   └── schema
-├── user-uploads
+├── images
 │   └── profile-images
 ├── package.json
 ├── server.js

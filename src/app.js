@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import withSession from './hoc/withSession';
 
+import AdminLayout from './layouts/adminLayout';
 import MainLayout from './layouts/mainLayout';
 
 import Signup from './pages/auth/signUp';
@@ -10,41 +11,50 @@ import Signout from './pages/auth/signOut';
 import Deshboard from './pages/dashboard';
 import SlideShow from './pages/slideshow';
 import NotFound from './pages/404';
+import Home from './pages/landing';
+
 
 const Root = ({ refetch, session }) =>
   <Switch>
     <Route path="/signin" render={props => (
-      <MainLayout>
+      <AdminLayout>
         <Signin {...props} refetch={refetch} />
-      </MainLayout>
+      </AdminLayout>
     )} />
     <Route path="/signup" render={props => (
-      <MainLayout>
+      <AdminLayout>
         <Signup {...props} refetch={refetch} />
-      </MainLayout>
+      </AdminLayout>
     )} />
     <Route path="/signout" render={props => (
-      <MainLayout>
+      <AdminLayout>
         <Signout {...props} />
-      </MainLayout>
+      </AdminLayout>
     )} />
     <Route path="/dashboard" render={props => (
-      <MainLayout>
+      <AdminLayout>
         <Deshboard {...props} session={session} />
-      </MainLayout>
+      </AdminLayout>
     )} />
     <Route path="/slideshow" render={props => (
-      <MainLayout>
+      <AdminLayout>
         <SlideShow {...props} session={session} />
+      </AdminLayout>
+    )} />
+    <Route path="/" exact render={() => (
+      <MainLayout>
+        <Home/>
       </MainLayout>
     )} />
-    <Route path="/" exact render={props => (
+    <Route path="/home" exact render={() => (
       <MainLayout>
-        <Signin {...props} refetch={refetch} />
+        <Home/>
       </MainLayout>
     )} />
     <Route path="/" render={props => (
-      <NotFound {...props} />
+      <MainLayout>
+        <NotFound {...props} />
+      </MainLayout>
     )} />
   </Switch>
   ;

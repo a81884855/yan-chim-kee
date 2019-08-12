@@ -149,7 +149,7 @@ class EditProfileMutations extends React.Component {
                         <img src={`${webConfig.siteURL}/assets/graphics/abstract_patterns/texture.jpg`} />
                       }
                       {this.props.session.getCurrentUser.profileImage &&
-                        <img src={`${webConfig.siteURL}/user-uploads/${this.props.session.getCurrentUser.profileImage}`} />
+                        <img src={`${webConfig.siteURL}/images/${this.props.session.getCurrentUser.profileImage}`} />
                       }
                     </div>
 

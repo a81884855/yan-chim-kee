@@ -28,7 +28,8 @@ import HTML from './src/helpers/renderer';
 import { typeDefs } from './src/schema';
 import { resolvers } from './src/resolvers';
 import User from './src/models/User';
-import SlideShow from './src/models/Slideshow';
+
+import images from './routes/api/images';
 
 // Connect MongoDB
 mongoose.connect(config.get('dbString'), { useNewUrlParser: true }).then(() => {
@@ -56,34 +57,21 @@ app.use(cookieParser())
 
 app.use("/", express.static("build/public"));
 
-app.get('/image/:folder/:file', function (req, res) {
+app.use("/api/images", images)
+
+// app.get("/imagesList/:folder", (req, res)=>{
+//   if(req.params.folder === "slideshow"){
+//     SlideShow.find({})
+//       .then( list => res.status(200).json(list))
+//       .catch( err => { throw err })
+//   }
+// })
+
+app.get('/images/:file', function (req, res) {
 
   const file_name = req.params.file;
-  const get_file = path.resolve(`./user-uploads/${req.params.folder}/` + req.params.file);
-  const current_files = fs.readdirSync(`./user-uploads/${req.params.folder}/`);
-  const fileExists = current_files.includes(file_name);
-
-  if (fileExists) {
-    res.status(200).sendFile(get_file);
-  } else {
-    res.status(404).send('No File Found!');
-  }
-
-});
-
-app.get("/imagesList/:folder", (req, res)=>{
-  if(req.params.folder === "slideshow"){
-    SlideShow.find({})
-      .then( list => res.status(200).json(list))
-      .catch( err => { throw err })
-  }
-})
-
-app.get('/user-uploads/:file', function (req, res) {
-
-  const file_name = req.params.file;
-  const get_file = path.resolve('./user-uploads/profile-images/' + req.params.file);
-  const current_files = fs.readdirSync('./user-uploads/profile-images/');
+  const get_file = path.resolve('./images/profile-images/' + req.params.file);
+  const current_files = fs.readdirSync('./images/profile-images/');
   const fileExists = current_files.includes(file_name);
 
   if (fileExists) {
@@ -191,36 +179,36 @@ const getFileType = (fileType) => {
   return ext;
 }
 
-app.post('/image/upload/:foldName', function (req, res) {
-  if (!req.files) return res.status(400).send('No files were uploaded.');
+// app.post('/image/upload/:foldName', function (req, res) {
+//   if (!req.files) return res.status(400).send('No files were uploaded.');
 
-  var current_files = fs.readdirSync(`./user-uploads/${req.params.foldName}/`);
-  let profilePic = req.files.selectedFile;
-  let fileName = profilePic.name;
+//   var current_files = fs.readdirSync(`./images/${req.params.foldName}/`);
+//   let profilePic = req.files.selectedFile;
+//   let fileName = profilePic.name;
 
-  if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
+//   if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
 
-  let send_filePath = `./user-uploads/${req.params.foldName}/` + fileName;
+//   let send_filePath = `./images/${req.params.foldName}/` + fileName;
 
-  profilePic.mv(send_filePath, function (err) {
+//   profilePic.mv(send_filePath, function (err) {
 
-    if (err) return res.status(500).send(err);
+//     if (err) return res.status(500).send(err);
 
-    const res_dataObj = {
-      "newFileName": fileName
-    }
+//     const res_dataObj = {
+//       "newFileName": fileName
+//     }
 
-    const newSlideShow = new SlideShow({
-      image: profilePic.name,
-    });
+//     const newSlideShow = new SlideShow({
+//       image: profilePic.name,
+//     });
 
-    newSlideShow.save()
-      .then(res.send(res_dataObj))
-      .catch(err => { throw err })
+//     newSlideShow.save()
+//       .then(res.send(res_dataObj))
+//       .catch(err => { throw err })
 
 
-  });
+//   });
 
-});
+// });
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
