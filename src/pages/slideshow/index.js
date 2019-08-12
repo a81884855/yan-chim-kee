@@ -41,7 +41,7 @@ export class SlideShow extends Component {
             <UploadImage 
               folderName="slideshow"
               refresh={this.refresh}
-              />
+            />
           </Col>
           <Col className="imagesConatiner">
             {fileList.map((file)=>
@@ -55,20 +55,20 @@ export class SlideShow extends Component {
         <div className="mt-4">
           <Carousel>
             {fileList.map((file)=>
-                <Carousel.Item>
-                  <Image 
-                    src={`/image/slideshow/${file.image}`}
-                    alt="First slide"
-                    name={file._id}
-                    style={{ width: '100%', height: '100vh' }}
-                    thumbnail
-                  />
-                  <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              )}
+              <Carousel.Item>
+                <Image 
+                  src={`/image/slideshow/${file.image}`}
+                  alt="First slide"
+                  name={file._id}
+                  style={{ width: '100%', height: '100vh' }}
+                  thumbnail
+                />
+                <Carousel.Caption>
+                  <h3>First slide label</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            )}
           </Carousel>
         </div>
       </Container>

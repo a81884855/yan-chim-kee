@@ -33,11 +33,11 @@ export default function Location() {
         </Col>
         <Col md={5}>
           <Map 
-          isMarkerShown 
-          loadingElement={<div style={{ height: `100%` }} />}
-          googleMapURL={googleMapURL}
-          containerElement={<div style={{ height: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+            isMarkerShown 
+            loadingElement={<div style={{ height: `100%` }} />}
+            googleMapURL={googleMapURL}
+            containerElement={<div style={{ height: `100%` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
           />
         </Col>
       </Row>

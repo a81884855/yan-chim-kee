@@ -36,12 +36,12 @@ export class Slideshow extends Component {
     }
     return (
       <Slide {...properties}>
-          {
-            slideImages.map((each) => 
+        {
+          slideImages.map((each) => 
             <a href="JavaScript:Void(0)" key={each._id}>
               <img alt="" key={each._id} style={{ height:"100vh", width: "100%"}} src={`/images/slideshow/${each.image}`} />
             </a>)
-          }
+        }
       </Slide>
     )
   }

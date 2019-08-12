@@ -13,4 +13,4 @@ const SlideShowSchema = new Schema({
   },
 });
 
-module.exports = SlideShow = mongoose.model("slideshow", SlideShowSchema);
+module.exports = mongoose.model("slideshow", SlideShowSchema);

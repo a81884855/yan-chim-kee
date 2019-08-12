@@ -34,7 +34,7 @@ import SlideShow from './src/models/Slideshow';
 mongoose.connect(config.get('dbString'), { useNewUrlParser: true }).then(() => {
   console.log('Connection to DB successful');
 }).catch(err => {
-  console.log(`Connection to DB Error: ${err}`);
+  throw `Connection to DB Error: ${err}`;
 });
 
 // check env vars
@@ -72,12 +72,10 @@ app.get('/image/:folder/:file', function (req, res) {
 });
 
 app.get("/imagesList/:folder", (req, res)=>{
-  console.log(req.params.folder)
   if(req.params.folder === "slideshow"){
-    console.log('yes')
     SlideShow.find({})
-    .then( list => res.status(200).json(list))
-    .catch( err => console.log(err))
+      .then( list => res.status(200).json(list))
+      .catch( err => { throw err })
   }
 })
 
@@ -217,8 +215,8 @@ app.post('/image/upload/:foldName', function (req, res) {
     });
 
     newSlideShow.save()
-    .then(res.send(res_dataObj))
-    .catch(err => console.log(err))
+      .then(res.send(res_dataObj))
+      .catch(err => { throw err })
 
 
   });
