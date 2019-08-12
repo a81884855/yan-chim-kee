@@ -15,7 +15,7 @@ export class SlideShow extends Component {
     this.deleteFile = this.deleteFile.bind(this)
   }
 
-  componentWillMount(){
+  componentDidMount(){
     axios.get(`/imagesList/slideshow`)
       .then(res => this.setState({
         fileList: res.data
@@ -23,13 +23,13 @@ export class SlideShow extends Component {
   }
 
   refresh(){
-    this.componentWillMount()
+    this.componentDidMount()
   }
 
   deleteFile(e){
     axios.delete(`/api/images/upload/${this.props.fileName}/${e.target.name}`)
-      .then(() => this.componentWillMount())
-      .catch(err => console.log(err))
+      .then(() => this.componentDidMount())
+      .catch(err => { throw err })
   }
 
   render() {
@@ -55,7 +55,7 @@ export class SlideShow extends Component {
         <div className="mt-4">
           <Carousel>
             {fileList.map((file)=>
-              <Carousel.Item>
+              <Carousel.Item key={file._id}>
                 <Image 
                   src={`/image/slideshow/${file.image}`}
                   alt="First slide"

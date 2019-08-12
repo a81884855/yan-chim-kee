@@ -11,10 +11,8 @@ export class Slideshow extends Component {
   }
 
   componentDidMount(){
-    console.log(`${window.location.host}:5000/api/images/upload/slideshow`)
     axios.get(`/api/images/upload/slideshow`)
       .then((data)=>{
-        console.log(data);
         this.setState({
           slideImages: data.data
         })
@@ -30,9 +28,6 @@ export class Slideshow extends Component {
       indicators: true,
       scale: 0.4,
       arrows: true,
-      onChange: (oldIndex, newIndex) => {
-        // console.log(`slide transition from ${oldIndex} to ${newIndex}`);
-      }
     }
     return (
       <Slide {...properties}>
