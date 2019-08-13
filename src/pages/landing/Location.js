@@ -8,7 +8,8 @@ export default function Location() {
   return (
     <Container className="location">
       <Row className="justify-content-md-center">
-        <Col md={5}>
+        <Col md={6}>
+          <p className="title">Location</p>
           <span className="icon">
             <MdLocationOn/>
           </span>
@@ -16,7 +17,7 @@ export default function Location() {
           <p>499 King’s Road, North PointHong Kong</p>
           <p>Hours of Operations: M-F 10am - 6pm (Expept Public Holidays)</p>
           <br></br>
-          <p>Contacts Us</p>
+          <p className="title">Contacts Us</p>
           <span className="icon">
             <MdMailOutline/>
           </span>
@@ -31,7 +32,7 @@ export default function Location() {
           </span>
           <p>852 2522-5466</p>
         </Col>
-        <Col md={5}>
+        <Col md={6}>
           <Map 
             isMarkerShown 
             loadingElement={<div style={{ height: `100%` }} />}

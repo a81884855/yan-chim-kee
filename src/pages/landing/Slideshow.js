@@ -28,7 +28,7 @@ export class Slideshow extends Component {
               src={`/api/images/slideshow/${slide.image}`}
               alt="First slide"
               name={slide._id}
-              style={{ width: '100%', height: '100vh' }}
+              style={{ width: '100%', height: '90vh' }}
               thumbnail
             />
             <Carousel.Caption>
