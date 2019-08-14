@@ -7,11 +7,11 @@ const TimeLineSchema = new Schema({
     required: true
   },
   year: {
-    typs: String,
+    type: String,
     required: true
   },
   chineseContent: {
-    typs: String,
+    type: String,
     required: true
   },
   date: {

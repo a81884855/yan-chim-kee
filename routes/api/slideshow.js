@@ -7,26 +7,23 @@ const SlideShow = require("../../src/models/Slideshow");
 
 router.use(fileUpload());
 
-router.get("/imagesList/:folder", (req, res)=>{
-  if(req.params.folder === "slideshow"){
-    SlideShow.find({})
-      .then( list => res.status(200).json(list))
-      .catch( err => { throw err })
-  }
+router.get("/list", (req, res)=>{
+  SlideShow.find({})
+    .then( list => res.status(200).json(list))
+    .catch( err => { throw err })
 })
 
-router.post('/upload/:folderName', function (req, res) {
+router.post('/upload', function (req, res) {
   if (!req.files) return res.status(400).send('No files were uploaded.');
 
-  const { folderName } = req.params;
-
-  var current_files = fs.readdirSync(`./images/${folderName}/`);
+  var current_files = fs.readdirSync(`./images/slideshow/`);
   let profilePic = req.files.selectedFile;
   let fileName = profilePic.name;
 
+  console.log(fileName)
   if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
 
-  let send_filePath = `./images/${folderName}/` + fileName;
+  let send_filePath = `./images/slideshow/` + fileName;
 
   profilePic.mv(send_filePath, function (err) {
 
@@ -43,15 +40,14 @@ router.post('/upload/:folderName', function (req, res) {
     newSlideShow.save()
       .then(res.send(res_dataObj))
       .catch(err => { throw err })
-
   });
 
 });
 
-router.delete('/:folderName/:fileName', (req, res)=>{
-  const { folderName, fileName } = req.params;
+router.delete('/slideshow/:fileName', (req, res)=>{
+  const { fileName } = req.params;
   try {
-    fs.unlinkSync(`./images/${folderName}/${fileName}`)
+    fs.unlinkSync(`./images/slideshow/${fileName}`)
   } catch(err) {
     throw err
   }

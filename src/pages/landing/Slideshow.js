@@ -11,11 +11,10 @@ export class Slideshow extends Component {
   }
 
   componentDidMount(){
-    axios.get(`/api/images/imagesList/slideshow`)
+    axios.get('/api/slideshow/list')
       .then(res => this.setState({
         slideImages: res.data
       }))
-      .then((res)=> console.log(res))
   }
 
   render() {

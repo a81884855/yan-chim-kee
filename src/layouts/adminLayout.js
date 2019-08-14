@@ -13,9 +13,9 @@ class AdminLayout extends React.Component {
           <SideBar />
         </aside>
         <section className="main">
-          <div className="grid">
+          {/* <div className="grid"> */}
             {this.props.children}
-          </div>
+          {/* </div> */}
         </section>
       </div>
     )

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import UploadImage from '../../helper/uploadImage';
 import axios from 'axios';
-// import { Slide } from 'react-slideshow-image';
 import { Container, Row, Col, Button, Image, Carousel } from 'react-bootstrap';
-import withAuth from './../../hoc/withAuth';
+import withAuth from '../../hoc/withAuth';
 
-export class SlideShow extends Component {
+export class AboutUs extends Component {
   constructor(){
     super()
     this.state={
-      fileList: [],
+      image: "",
+      year: "",
+  
     }
     this.refresh = this.refresh.bind(this)
     this.deleteFile = this.deleteFile.bind(this)
@@ -76,4 +77,4 @@ export class SlideShow extends Component {
   }
 }
 
-export default withAuth(session => session && session.getCurrentUser)(SlideShow);
+export default withAuth(session => session && session.getCurrentUser)(AboutUs);

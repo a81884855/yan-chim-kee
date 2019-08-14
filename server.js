@@ -26,7 +26,8 @@ import { typeDefs } from './src/schema';
 import { resolvers } from './src/resolvers';
 import User from './src/models/User';
 
-import images from './routes/api/images';
+import slideshow from './routes/api/slideshow';
+import timeline from './routes/api/timeline';
 
 // Connect MongoDB
 mongoose.connect(config.get('dbString'), { useNewUrlParser: true }).then(() => {
@@ -50,7 +51,8 @@ app.use(cookieParser())
 app.use("/", express.static("build/public"));
 
 app.use("/images", express.static("images"))
-app.use("/api/images", images)
+app.use("/api/slideshow", slideshow)
+app.use("/api/timeline", timeline)
 
 // JWT Middelware 
 app.use(async (req, res, next) => {

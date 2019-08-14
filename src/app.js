@@ -9,7 +9,7 @@ import MainLayout from './layouts/mainLayout';
 import Signin from './pages/auth/signIn';
 import Signout from './pages/auth/signOut';
 import Deshboard from './pages/dashboard';
-import SlideShow from './pages/slideshow';
+import SlideShow from './pages/admin/slideshow';
 import NotFound from './pages/404';
 import Home from './pages/landing';
 
