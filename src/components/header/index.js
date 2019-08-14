@@ -11,9 +11,9 @@ export default function Head() {
         | 
         <span>
           <a href="https://www.facebook.com/Yanchimkee/">
-            <img className="social" alt="facebook" src="/api/images/main/facebook.png"/></a>
+            <img className="social" alt="facebook" src="/images/main/facebook.png"/></a>
           <a href="https://www.instagram.com/yanchimkee/">
-            <img className="social" alt="instragram" src="/api/images/main/instagram.png"/></a>
+            <img className="social" alt="instragram" src="/images/main/instagram.png"/></a>
         </span>
       </div>
 
@@ -21,7 +21,7 @@ export default function Head() {
         <Navbar.Brand href="/">            
           <img 
             className="mr-sm-5 ml-sm-5"
-            src="/api/images/main/logo.png" 
+            src="/images/main/logo.png" 
             alt="logo" 
             style={{ width: 110, display: 'block', margin: 'auto' }}
           />

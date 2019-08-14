@@ -5,7 +5,7 @@ import withSession from './hoc/withSession';
 import AdminLayout from './layouts/adminLayout';
 import MainLayout from './layouts/mainLayout';
 
-import Signup from './pages/auth/signUp';
+// import Signup from './pages/auth/signUp';
 import Signin from './pages/auth/signIn';
 import Signout from './pages/auth/signOut';
 import Deshboard from './pages/dashboard';
@@ -21,11 +21,11 @@ const Root = ({ refetch, session }) =>
         <Signin {...props} refetch={refetch} />
       </AdminLayout>
     )} />
-    <Route path="/signup" render={props => (
+    {/* <Route path="/signup" render={props => (
       <AdminLayout>
         <Signup {...props} refetch={refetch} />
       </AdminLayout>
-    )} />
+    )} /> */}
     <Route path="/signout" render={props => (
       <AdminLayout>
         <Signout {...props} />

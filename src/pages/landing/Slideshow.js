@@ -25,7 +25,7 @@ export class Slideshow extends Component {
         {slideImages.map((slide)=>
           <Carousel.Item key={slide._id}>
             <Image 
-              src={`/api/images/slideshow/${slide.image}`}
+              src={`/images/slideshow/${slide.image}`}
               alt="First slide"
               name={slide._id}
               style={{ width: '100%', height: '90vh' }}

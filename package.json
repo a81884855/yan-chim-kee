@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "heroku-postbuild": "webpack --config webpack.server.js && webpack --config webpack.client.js",
-    "build": "webpack --config webpack.server.js && webpack --config webpack.client.js",
+    "build": "webpack -p --config webpack.server.js && webpack -p --config webpack.client.js",
     "serve": "node build/bundle.js",
     "dev": "npm-run-all --parallel dev:*",
     "dev:build-server": "webpack --config webpack.server.js --watch",

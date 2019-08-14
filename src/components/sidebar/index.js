@@ -56,11 +56,11 @@ export class UnconnectedSideBar extends Component {
                     <i className="fas fa-user"></i>
                     LogIn</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink to="/signup" onClick={() => this.mobile_nav_button()}>
                     <i className="fas fa-pen-fancy"></i>
                     Join now</NavLink>
-                </li>
+                </li> */}
               </ul>
             }
 

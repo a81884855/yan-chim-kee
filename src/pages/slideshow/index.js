@@ -46,8 +46,8 @@ export class SlideShow extends Component {
           <Col className="imagesConatiner">
             {fileList.map((file)=>
               <div key={file._id}>
-                <Image src={`/api/images/slideshow/${file.image}`} thumbnail />
-                <Button name={file.image} style={{ float: 'right', marginTop: '5px' }} onClick={this.deleteFile}>Delete</Button>
+                <Image src={`/images/slideshow/${file.image}`} thumbnail />
+                <Button variant="danger" name={file.image} style={{ float: 'right', marginTop: '5px' }} onClick={this.deleteFile}>Delete</Button>
               </div>
             )}
           </Col>
@@ -57,10 +57,10 @@ export class SlideShow extends Component {
             {fileList.map((file)=>
               <Carousel.Item key={file._id}>
                 <Image 
-                  src={`/api/images/slideshow/${file.image}`}
+                  src={`/images/slideshow/${file.image}`}
                   alt="First slide"
                   name={file._id}
-                  style={{ width: '100%', height: '100vh' }}
+                  style={{ width: '100%', height: '100vh', maxHeight: '450px' }}
                   thumbnail
                 />
                 <Carousel.Caption>

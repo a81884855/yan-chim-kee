@@ -1,8 +1,6 @@
 import 'babel-polyfill';
 import 'isomorphic-unfetch';
 import config from 'config';
-import path from 'path';
-import fs from 'fs';
 import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
@@ -20,7 +18,6 @@ import cors from 'cors';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { Helmet } from 'react-helmet';
-import fileUpload from 'express-fileupload';
 
 import AppComponent from './src/app';
 import HTML from './src/helpers/renderer';
@@ -44,12 +41,7 @@ require('./config')();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: `${webConfig.siteURL}`,
-    credentials: true
-  })
-);
+app.use(cors({ origin: `${webConfig.siteURL}`, credentials: true }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,30 +49,8 @@ app.use(cookieParser())
 
 app.use("/", express.static("build/public"));
 
+app.use("/images", express.static("images"))
 app.use("/api/images", images)
-
-// app.get("/imagesList/:folder", (req, res)=>{
-//   if(req.params.folder === "slideshow"){
-//     SlideShow.find({})
-//       .then( list => res.status(200).json(list))
-//       .catch( err => { throw err })
-//   }
-// })
-
-app.get('/images/:file', function (req, res) {
-
-  const file_name = req.params.file;
-  const get_file = path.resolve('./images/profile-images/' + req.params.file);
-  const current_files = fs.readdirSync('./images/profile-images/');
-  const fileExists = current_files.includes(file_name);
-
-  if (fileExists) {
-    res.status(200).sendFile(get_file);
-  } else {
-    res.status(404).send('No File Found!');
-  }
-
-});
 
 // JWT Middelware 
 app.use(async (req, res, next) => {
@@ -167,48 +137,5 @@ app.get(['*/:param', '*'], (req, res) => {
   });
 
 });
-
-app.use(fileUpload());
-const getFileType = (fileType) => {
-  let ext;
-  if (fileType == 'image/jpeg') {
-    ext = '.jpg';
-  } else if (fileType == 'image/png') {
-    ext = '.png';
-  }
-  return ext;
-}
-
-// app.post('/image/upload/:foldName', function (req, res) {
-//   if (!req.files) return res.status(400).send('No files were uploaded.');
-
-//   var current_files = fs.readdirSync(`./images/${req.params.foldName}/`);
-//   let profilePic = req.files.selectedFile;
-//   let fileName = profilePic.name;
-
-//   if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
-
-//   let send_filePath = `./images/${req.params.foldName}/` + fileName;
-
-//   profilePic.mv(send_filePath, function (err) {
-
-//     if (err) return res.status(500).send(err);
-
-//     const res_dataObj = {
-//       "newFileName": fileName
-//     }
-
-//     const newSlideShow = new SlideShow({
-//       image: profilePic.name,
-//     });
-
-//     newSlideShow.save()
-//       .then(res.send(res_dataObj))
-//       .catch(err => { throw err })
-
-
-//   });
-
-// });
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
