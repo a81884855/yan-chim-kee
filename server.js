@@ -18,6 +18,7 @@ import cors from 'cors';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { Helmet } from 'react-helmet';
+import compression from 'compression'; 
 
 import AppComponent from './src/app';
 import HTML from './src/helpers/renderer';
@@ -42,11 +43,18 @@ require('./config')();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(compression());
 app.use(cors({ origin: `${webConfig.siteURL}`, credentials: true }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
+
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 
 app.use("/", express.static("build/public"));
 

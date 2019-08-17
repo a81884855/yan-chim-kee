@@ -1,6 +1,7 @@
 const path = require('path');
 const webConfig = require('./webConfig');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
 
@@ -53,12 +54,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new CompressionPlugin,
     new CopyWebpackPlugin([
       { from: 'src/assets/graphics', to: 'assets/graphics' },
       { from: 'src/assets/email_templates', to: 'assets/email_templates' }
     ])
   ]
-
 };
 
 

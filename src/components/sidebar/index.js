@@ -77,6 +77,11 @@ export class UnconnectedSideBar extends Component {
                     SlideShow</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/timeline" onClick={() => this.mobile_nav_button()}>
+                    <i className="fas fa-tachometer-alt"></i>
+                    TimeLine</NavLink>
+                </li>
+                <li>
                   <NavLink to="/signout" onClick={() => this.mobile_nav_button()}>
                     <i className="fas fa-sign-out-alt"></i>
                     LogOut</NavLink>

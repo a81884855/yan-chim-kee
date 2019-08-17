@@ -10,9 +10,11 @@ import Signin from './pages/auth/signIn';
 import Signout from './pages/auth/signOut';
 import Deshboard from './pages/dashboard';
 import SlideShow from './pages/admin/slideshow';
+import TimeLine from './pages/admin/timeline';
 import NotFound from './pages/404';
 import Home from './pages/landing';
-
+import TimelineEdit from './pages/edit/timeline';
+import AboutUs from './pages/aboutUs';
 
 const Root = ({ refetch, session }) =>
   <Switch>
@@ -31,14 +33,24 @@ const Root = ({ refetch, session }) =>
         <Signout {...props} />
       </AdminLayout>
     )} />
-    <Route path="/dashboard" render={props => (
+    <Route path="/dashboard" exact render={props => (
       <AdminLayout>
         <Deshboard {...props} session={session} />
       </AdminLayout>
     )} />
-    <Route path="/slideshow" render={props => (
+    <Route path="/slideshow" exact render={props => (
       <AdminLayout>
         <SlideShow {...props} session={session} />
+      </AdminLayout>
+    )} />
+    <Route path="/timeline" exact render={props => (
+      <AdminLayout>
+        <TimeLine {...props} session={session} />
+      </AdminLayout>
+    )} />
+    <Route path="/timeline/edit/:id" render={props => (
+      <AdminLayout>
+        <TimelineEdit {...props} session={session} />
       </AdminLayout>
     )} />
     <Route path="/" exact render={() => (
@@ -49,6 +61,11 @@ const Root = ({ refetch, session }) =>
     <Route path="/home" exact render={() => (
       <MainLayout>
         <Home/>
+      </MainLayout>
+    )} />
+    <Route path="/aboutus" exact render={() => (
+      <MainLayout>
+        <AboutUs/>
       </MainLayout>
     )} />
     <Route path="/" render={props => (

@@ -1,0 +1,44 @@
+#aboutUs{
+  margin-top: 4vh;
+  color:white;
+
+  h1{
+    color:white;
+    margin: 1rem 0 1rem 0;
+  }
+
+  p{
+    font-size: 2rem;
+  }
+
+  table{
+    font-size: 1.5rem;
+    color:white;
+  }
+
+  #year{
+    margin: 0;
+    font-size: 5rem;
+    position: absolute;
+    bottom: 10px;
+    line-height: inherit;
+  }
+  
+  .content{
+    margin: 10px 0 0 0;
+  }
+
+  #more{
+    margin: 0;
+    font-size: 18px;
+    width: 165px;
+    height: 41px;
+    line-height: 41px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #891a13;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 700;
+  }
+}

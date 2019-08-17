@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import UploadImage from '../../helper/uploadImage';
 import axios from 'axios';
-// import { Slide } from 'react-slideshow-image';
 import { Container, Row, Col, Button, Image, Carousel } from 'react-bootstrap';
 import withAuth from '../../hoc/withAuth';
 
@@ -26,7 +25,6 @@ export class SlideShow extends Component {
   fileUpload(){
     const data = new FormData();
     const { file } = this.state;
-    console.log(file)
     data.append('selectedFile', file);
     axios.post(`/api/slideshow/upload`, data)
       .then(() => this.componentDidMount())
@@ -49,6 +47,7 @@ export class SlideShow extends Component {
     const { fileList } = this.state;
     return (
       <Container>
+        <h3>Add new slideshow!</h3>
         <Row>
           <Col >
             <UploadImage 
@@ -75,7 +74,7 @@ export class SlideShow extends Component {
                   src={`/images/slideshow/${file.image}`}
                   alt="First slide"
                   name={file._id}
-                  style={{ width: '100%', height: '80vh', maxHeight: '450px' }}
+                  style={{ width: '100%', height: '100vh', maxHeight: '450px' }}
                   thumbnail
                 />
                 <Carousel.Caption>

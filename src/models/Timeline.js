@@ -14,6 +14,9 @@ const TimeLineSchema = new Schema({
     type: String,
     required: true
   },
+  englishContent: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now

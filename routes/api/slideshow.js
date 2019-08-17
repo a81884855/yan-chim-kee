@@ -20,7 +20,6 @@ router.post('/upload', function (req, res) {
   let profilePic = req.files.selectedFile;
   let fileName = profilePic.name;
 
-  console.log(fileName)
   if(current_files.includes(fileName)) res.status(400).send({ message: "file already exist!!"});
 
   let send_filePath = `./images/slideshow/` + fileName;
