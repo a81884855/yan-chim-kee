@@ -28,7 +28,6 @@ export class Slideshow extends Component {
               alt="First slide"
               name={slide._id}
               style={{ width: '100%', height: '90vh' }}
-              thumbnail
             />
             <Carousel.Caption>
               <h3>First slide label</h3>

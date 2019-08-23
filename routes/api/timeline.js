@@ -3,7 +3,7 @@ const router = express.Router();
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 
-const TimeLine = require("../../src/models/TimeLine");
+const TimeLine = require("../../src/models/Timeline");
 
 router.use(fileUpload());
 

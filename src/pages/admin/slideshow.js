@@ -74,8 +74,8 @@ export class SlideShow extends Component {
                   src={`/images/slideshow/${file.image}`}
                   alt="First slide"
                   name={file._id}
-                  style={{ width: '100%', height: '100vh', maxHeight: '450px' }}
                   thumbnail
+                  style={{ width: '100%', height: '100vh', maxHeight: '450px'}}
                 />
                 <Carousel.Caption>
                   <h3>First slide label</h3>

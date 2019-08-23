@@ -1,4 +1,5 @@
 {
+  "siteURL1": "http://www.yanchimkee.com",
   "siteURL": "http://localhost:3000",
   "environment": "development"
 }

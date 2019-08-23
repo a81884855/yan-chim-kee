@@ -40,7 +40,7 @@ export class TimeLine extends Component {
     let { image, year, chineseContent, englishContent } = this.state;
     axios.post('/api/timeline/info', { image, year, chineseContent, englishContent })
       .then(()=> {this.fileUpload()})
-      .catch( err => console.log(err))
+      .catch( err => { throw err})
   }
 
   fileUpload(){

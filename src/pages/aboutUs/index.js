@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import axios from 'axios';
 
+
+
 export class AboutUs extends Component {
   constructor(props){
     super(props)
@@ -66,8 +68,7 @@ export class AboutUs extends Component {
                 </Col>
                 <Col 
                   md={{ order: index%2 ? 1 : 2, span:6}}
-                  style={{borderRight: index%2 ? "6px #891a14 solid" : null,
-                    marginBottom: index===timelines.length-1 ? "120px": null}}
+                  style={{borderRight: index%2 ? "6px #891a14 solid" : null }}
                 />
               </Row>
             )}    
