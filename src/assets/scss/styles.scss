@@ -1,26 +1,27 @@
-@import './_config';
+@import "./_config";
 
 // lib
-@import './lib/_toastr';
+@import "./lib/_toastr";
 
 // Base
-@import './base/_normalize';
-@import './base/_css_grid';
-@import './base/_forms';
-@import './base/_default';
+@import "./base/_normalize";
+@import "./base/_css_grid";
+@import "./base/_forms";
+@import "./base/_default";
 
 // Components
-@import './component/_header';
-@import './component/_footer';
-@import './component/_sidebar';
+@import "./component/_header";
+@import "./component/_footer";
+@import "./component/_sidebar";
 
 // Pages
-@import './pages/_auth';
-@import './pages/_users';
-@import './pages/_dashboard';
-@import './pages/_uploadImage';
-@import './pages/_main';
-@import './pages/aboutUs';
+@import "./pages/_auth";
+@import "./pages/_users";
+@import "./pages/_dashboard";
+@import "./pages/_uploadImage";
+@import "./pages/_main";
+@import "./pages/_aboutUs";
+@import "./pages/_products";
 
 // Responsive
-@import './_responsive';
+@import "./_responsive";

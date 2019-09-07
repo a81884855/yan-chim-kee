@@ -1,20 +1,19 @@
-import React, { Fragment, Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import webConfig from './../../../webConfig';
-import withSession from './../../hoc/withSession';
-import classNames from 'classnames';
+import React, { Fragment, Component } from "react";
+import { NavLink } from "react-router-dom";
+import webConfig from "./../../../webConfig";
+import withSession from "./../../hoc/withSession";
+import classNames from "classnames";
 
 export class UnconnectedSideBar extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       mobileNavState: false
-    }
+    };
   }
 
   componentDidMount() {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.outerWidth >= 1024) {
         this.setState({
           mobileNavState: false
@@ -42,57 +41,88 @@ export class UnconnectedSideBar extends Component {
         </div>
 
         <nav className="signbar_nav" data-test="sideBarComponent">
-
-          <div className={classNames({ 'headline': true, 'mobile_nav_button': true, 'active': this.state.mobileNavState })} onClick={() => this.mobile_nav_button()}>
+          <div
+            className={classNames({
+              headline: true,
+              mobile_nav_button: true,
+              active: this.state.mobileNavState
+            })}
+            onClick={() => this.mobile_nav_button()}
+          >
             Main navigation
           </div>
 
-          <div className={classNames({ 'mobile_nav_toggle': true, 'active': this.state.mobileNavState })}>
-
-            {this.props.session.getCurrentUser === null &&
+          <div
+            className={classNames({
+              mobile_nav_toggle: true,
+              active: this.state.mobileNavState
+            })}
+          >
+            {this.props.session.getCurrentUser === null && (
               <ul>
                 <li>
-                  <NavLink to="/signin" onClick={() => this.mobile_nav_button()}>
+                  <NavLink
+                    to="/signin"
+                    onClick={() => this.mobile_nav_button()}
+                  >
                     <i className="fas fa-user"></i>
-                    LogIn</NavLink>
+                    LogIn
+                  </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink to="/signup" onClick={() => this.mobile_nav_button()}>
-                    <i className="fas fa-pen-fancy"></i>
-                    Join now</NavLink>
-                </li> */}
               </ul>
-            }
+            )}
 
-            {this.props.session.getCurrentUser != null &&
+            {this.props.session.getCurrentUser != null && (
               <ul>
                 <li>
-                  <NavLink to="/dashboard" onClick={() => this.mobile_nav_button()}>
+                  <NavLink
+                    to="/admin/dashboard"
+                    onClick={() => this.mobile_nav_button()}
+                  >
                     <i className="fas fa-tachometer-alt"></i>
-                    Dashboard</NavLink>
+                    Dashboard
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/slideshow" onClick={() => this.mobile_nav_button()}>
+                  <NavLink
+                    to="/admin/slideshow"
+                    onClick={() => this.mobile_nav_button()}
+                  >
                     <i className="fas fa-tachometer-alt"></i>
-                    SlideShow</NavLink>
+                    SlideShow
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/timeline" onClick={() => this.mobile_nav_button()}>
+                  <NavLink
+                    to="/admin/timeline"
+                    onClick={() => this.mobile_nav_button()}
+                  >
                     <i className="fas fa-tachometer-alt"></i>
-                    TimeLine</NavLink>
+                    TimeLine
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/signout" onClick={() => this.mobile_nav_button()}>
+                  <NavLink
+                    to="/admin/products"
+                    onClick={() => this.mobile_nav_button()}
+                  >
+                    <i className="fas fa-tachometer-alt"></i>
+                    Products
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/signout"
+                    onClick={() => this.mobile_nav_button()}
+                  >
                     <i className="fas fa-sign-out-alt"></i>
-                    LogOut</NavLink>
+                    LogOut
+                  </NavLink>
                 </li>
               </ul>
-            }
-
+            )}
           </div>
-
         </nav>
-
       </Fragment>
     );
   }

@@ -1,29 +1,28 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Mutation } from 'react-apollo';
-import { SIGNIN_USER } from './../../queries';
-import { withRouter } from 'react-router-dom';
-import * as Cookies from 'es-cookie';
-import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import classNames from "classnames";
+import { Mutation } from "react-apollo";
+import { SIGNIN_USER } from "./../../queries";
+import { withRouter } from "react-router-dom";
+import * as Cookies from "es-cookie";
+import { Helmet } from "react-helmet";
+import { NavLink } from "react-router-dom";
 
 const initialState = {
-  email: '',
-  password: '',
-  error: ''
-}
+  email: "",
+  password: "",
+  error: ""
+};
 
 class Signin extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       ...initialState
-    }
+    };
   }
 
   clearState() {
-    this.setState({ ...initialState })
+    this.setState({ ...initialState });
   }
 
   handleChange(event) {
@@ -36,22 +35,23 @@ class Signin extends React.Component {
 
   handleSubmit(event, signinUser) {
     event.preventDefault();
-    signinUser().then(async ({ data }) => {
-      Cookies.set('token', data.signinUser.token);
-      await this.props.refetch();
-      this.clearState();
-      this.props.history.push('/dashboard');
-
-    }).catch(error => {
-      this.setState({
-        error: error.graphQLErrors.map(x => x.message)
+    signinUser()
+      .then(async ({ data }) => {
+        Cookies.set("token", data.signinUser.token);
+        await this.props.refetch();
+        this.clearState();
+        this.props.history.push("/admin/dashboard");
       })
-      // console.error("ERR =>", error.graphQLErrors.map(x => x.message));
-    });
+      .catch(error => {
+        this.setState({
+          error: error.graphQLErrors.map(x => x.message)
+        });
+        // console.error("ERR =>", error.graphQLErrors.map(x => x.message));
+      });
   }
 
   validateForm() {
-    const { email, password } = this.state
+    const { email, password } = this.state;
     this.state;
     const isInvalid = !email || !password;
     return isInvalid;
@@ -66,82 +66,89 @@ class Signin extends React.Component {
   }
 
   render() {
-
-    const { email, password } = this.state
+    const { email, password } = this.state;
     this.state;
 
     return (
       <div className="column column_12_12">
         {this.head()}
         <div className="signUp authForm">
-
-          <h1 className="dark_headline">
-            LogIn
-          </h1>
+          <h1 className="dark_headline">LogIn</h1>
 
           <Mutation mutation={SIGNIN_USER} variables={{ email, password }}>
-
             {(signinUser, { loading }) => {
-
               return (
-
-                <form className="form" onSubmit={event => this.handleSubmit(event, signinUser)}>
-
+                <form
+                  className="form"
+                  onSubmit={event => this.handleSubmit(event, signinUser)}
+                >
                   <div className="form_wrap">
-
-                    <div className={classNames({ 'error-label': this.state.error != '' })}>
+                    <div
+                      className={classNames({
+                        "error-label": this.state.error != ""
+                      })}
+                    >
                       {this.state.error}
                     </div>
 
                     <div className="form_row">
-
                       <div className="form_item">
                         <div className="form_input">
-                          <input type="email" name="email" placeholder="Email" value={email} onChange={this.handleChange.bind(this)} />
+                          <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={this.handleChange.bind(this)}
+                          />
                           <span className="bottom_border"></span>
                         </div>
                       </div>
-
                     </div>
 
                     <div className="form_row">
-
                       <div className="form_item">
                         <div className="form_input">
-                          <input type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange.bind(this)} />
+                          <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={this.handleChange.bind(this)}
+                          />
                           <span className="bottom_border"></span>
                         </div>
                       </div>
-
                     </div>
 
                     <div className="formBottomLinks">
                       <p>
-                        {`Don't`} have an account? <NavLink to="/signup">Join now!</NavLink>
+                        {`Don't`} have an account?{" "}
+                        <NavLink to="/signup">Join now!</NavLink>
                       </p>
                       <p>
-                        Forgot your password? <NavLink to="/account-recovery">Reset here</NavLink>
+                        Forgot your password?{" "}
+                        <NavLink to="/account-recovery">Reset here</NavLink>
                       </p>
                     </div>
 
                     <div className="form_buttons">
-                      <button type="submit" className="btn"
-                        disabled={loading || this.validateForm()}>
-                        LogIn</button>
+                      <button
+                        type="submit"
+                        className="btn"
+                        disabled={loading || this.validateForm()}
+                      >
+                        LogIn
+                      </button>
                     </div>
-
                   </div>
-
                 </form>
-
               );
             }}
-
           </Mutation>
-
         </div>
       </div>
-    )
+    );
   }
 }
 
