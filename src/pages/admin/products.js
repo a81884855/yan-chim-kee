@@ -74,11 +74,11 @@ export class Products extends Component {
         this.setState({
           images: images
         });
-        console.log("success", this.state.images);
+        // console.log("success", this.state.images);
       })
       .catch(err => {
         // window.location.reload();
-        console.log(err);
+        throw err;
       });
   }
 
