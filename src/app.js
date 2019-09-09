@@ -103,7 +103,7 @@ const Root = ({ refetch, session }) => (
       )}
     />
     <Route
-      path="/aboutus"
+      path="/aboutUs"
       exact
       render={() => (
         <MainLayout>

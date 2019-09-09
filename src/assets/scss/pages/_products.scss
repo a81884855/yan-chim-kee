@@ -20,6 +20,10 @@
       background: none;
       text-align: center;
 
+      .productImage {
+        width: 100%;
+        min-height: 10vw;
+      }
       p {
         margin: 0;
       }

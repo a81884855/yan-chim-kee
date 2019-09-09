@@ -32,7 +32,7 @@ export class AboutUs extends Component {
     return (
       <div>
         {this.head()}
-        <Container id="aboutUs">
+        <Container className="aboutUs">
           <Row className="justify-content-md-center">
             <h1>About Us / History</h1>
             <p>
@@ -51,14 +51,14 @@ export class AboutUs extends Component {
               as a hawker,
             </p>
             <h1>Brand Timeline</h1>
-            <Container style={{ margin: "30px 0 120px 0" }}>
+            <Container className="timelineInfo">
               {timelines.map((timeline, index) => (
                 <Row className="justify-content-md-center" key={index}>
                   <Col
                     className={
                       index % 2
-                        ? "float-right text-left"
-                        : "float-left text-right"
+                        ? "float-right text-left timeline"
+                        : "float-left text-right timeline"
                     }
                     md={{ order: index % 2 ? 2 : 1, span: 6 }}
                     style={{
@@ -102,9 +102,7 @@ export class AboutUs extends Component {
                   />
                 </Row>
               ))}
-              <Row className="justify-content-md-center">
-                <div id="more">More</div>
-              </Row>
+              <div id="more">More</div>
             </Container>
           </Row>
         </Container>

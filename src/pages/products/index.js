@@ -65,6 +65,7 @@ class ProductContainer extends Component {
         <Card id="product_desc">
           <Card.Img
             variant="top"
+            className="productImage"
             onMouseEnter={() => this.setState({ hover: true })}
             onMouseLeave={() => this.setState({ hover: false })}
             src={
